@@ -1,0 +1,204 @@
+/* ─── Edumind design tokens ─────────────────────────────────────────────
+   Dark-first learning environment. Chart colors follow the validated
+   dataviz reference palette (dark-mode steps); mastery is a sequential
+   blue ramp (magnitude), not green/red. */
+
+:root {
+  /* planes */
+  --page: #0d0d0f;
+  --surface: #17171b;
+  --surface-2: #1e1e24;
+  --surface-3: #26262e;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.16);
+
+  /* ink */
+  --ink: #f4f4f1;
+  --ink-2: #b9b9b2;
+  --ink-3: #85857e;
+
+  /* brand accents */
+  --accent: #9085e9;        /* violet — primary actions, active states */
+  --accent-strong: #a89ef5;
+  --accent-dim: rgba(144, 133, 233, 0.16);
+  --cyan: #3987e5;          /* links, focus */
+
+  /* status (reserved, never series) */
+  --good: #0ca30c;
+  --warning: #fab219;
+  --serious: #ec835a;
+  --critical: #d03b3b;
+
+  /* mastery ramp — sequential blue, near-surface → vivid (0 → 1) */
+  --mastery-0: #26262e;
+  --mastery-1: #1c3a5e;
+  --mastery-2: #1c5cab;
+  --mastery-3: #256abf;
+  --mastery-4: #3987e5;
+  --mastery-5: #6da7ec;
+
+  /* chart series (validated dark categorical order) */
+  --series-1: #3987e5;
+  --series-2: #008300;
+  --series-3: #d55181;
+  --series-4: #c98500;
+
+  --radius: 12px;
+  --radius-sm: 8px;
+  --font: system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: ui-monospace, "Cascadia Code", Consolas, monospace;
+
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.4), 0 4px 16px rgba(0, 0, 0, 0.25);
+  --shadow-2: 0 2px 6px rgba(0, 0, 0, 0.45), 0 12px 32px rgba(0, 0, 0, 0.35);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--page);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 15px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--cyan);
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+}
+
+::selection {
+  background: var(--accent-dim);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--surface-3);
+  border-radius: 6px;
+  border: 2px solid var(--page);
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* ─── shared primitives ─── */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 18px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-strong);
+  background: var(--surface-2);
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 550;
+  cursor: pointer;
+  transition: background 140ms ease, border-color 140ms ease, transform 80ms ease;
+}
+.btn:hover {
+  background: var(--surface-3);
+}
+.btn:active {
+  transform: translateY(1px);
+}
+.btn:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.btn-primary {
+  background: var(--accent);
+  border-color: transparent;
+  color: #101018;
+}
+.btn-primary:hover {
+  background: var(--accent-strong);
+}
+
+.btn-ghost {
+  background: transparent;
+  border-color: transparent;
+  color: var(--ink-2);
+}
+.btn-ghost:hover {
+  background: var(--surface-2);
+  color: var(--ink);
+}
+
+.input,
+select.input,
+textarea.input {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-strong);
+  background: var(--surface);
+  color: var(--ink);
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 140ms ease, box-shadow 140ms ease;
+}
+.input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-dim);
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  background: var(--surface-3);
+  color: var(--ink-2);
+}
+
+.markdown p {
+  margin: 0 0 0.7em;
+}
+.markdown code {
+  font-family: var(--mono);
+  font-size: 0.88em;
+  background: var(--surface-3);
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+.markdown pre {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 12px;
+  overflow-x: auto;
+}
+.markdown ul,
+.markdown ol {
+  padding-left: 1.3em;
+  margin: 0.4em 0;
+}
+.markdown strong {
+  color: var(--ink);
+}
